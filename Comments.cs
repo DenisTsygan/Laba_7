@@ -53,20 +53,28 @@ namespace Laba_7
             _comments.RemoveAt(indexRemove);
         }
         /// <summary>
-        /// Update element by index , if index is out of range return ArgumentOutOfRangeException
+        /// Update element by index , if index is out of range return ArgumentOutOfRangeException,if element is null return ArgumentNullException
         /// </summary>
         /// <param name="element"> updated element</param>
         /// <param name="indexUpdate">index updated element</param>
         public void UpdateElementByIndex(Comment element, int indexUpdate)
         {
-            if(indexUpdate >0 && indexUpdate < _comments.Count)
+            if(element is not null)
             {
-                _comments[indexUpdate] = element;
+                if (indexUpdate > 0 && indexUpdate < _comments.Count)
+                {
+                    _comments[indexUpdate] = element;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
             else
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentNullException();
             }
+            
         }
         /// <summary>
         /// return new List,if empty or null string uid return ArgumentNullException
