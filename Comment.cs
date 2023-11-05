@@ -1,21 +1,30 @@
 ﻿using System;
-
+using System.Text.Json.Serialization;
 
 namespace Laba_7
 {
+    [Serializable]
     public class Comment
     {
         private DateTime _dateSending;
-        private UserInfo _authorInfo;
+        private AuthorInfo _authorInfo;
         private string _message;
+
+        [JsonConstructor]
+        public Comment( DateTime dateSending, string message)
+        {
+            DateSending = dateSending;
+            Message = message;
+        }
 
         public Comment(string uidAuthor, string nameAuthor, DateTime dateSending, string message)
         {
             DateSending = dateSending;
             Message = message;
-            AuthorInfo = new UserInfo(uidAuthor, nameAuthor);
+            AuthorInfo = new AuthorInfo(uidAuthor, nameAuthor);
         }
 
+        [JsonPropertyName("DateSending")]
         /// <summary>
         /// Date of sending comment ,if incorrect init value return ArgumentException
         /// </summary>
@@ -31,10 +40,14 @@ namespace Laba_7
                 }
             } 
         }
+
+        [JsonPropertyName("AuthorInfo")]
         /// <summary>
         /// Info about author comment
         /// </summary>
-        public UserInfo AuthorInfo { get => _authorInfo; init => _authorInfo = value; }
+        public AuthorInfo AuthorInfo { get => _authorInfo; init => _authorInfo = value; }
+
+        [JsonPropertyName("Message")]
         /// <summary>
         /// Message in comment ,if empty or null init value return ArgumentNullException
         /// </summary>

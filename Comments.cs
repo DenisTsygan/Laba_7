@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Laba_7
 {
-    class Comments
+
+    public class Comments
     {
         private List<Comment> _comments;
         /// <summary>
@@ -27,7 +28,14 @@ namespace Laba_7
                 _comments = new List<Comment>();
             }
         }
-
+        /// <summary>
+        /// return list comments
+        /// </summary>
+        /// <returns></returns>
+        public List<Comment> GetList()
+        {
+            return _comments;
+        }
         /// <summary>
         /// adding the element to the List _comments, if element is null return ArgumentNullException
         /// </summary>
