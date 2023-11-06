@@ -16,11 +16,11 @@ namespace Laba_7
              Comments commments = new Comments(comment1, comment4, comment5, comment2, comment3);
             //Serialization JSON
             
-            FileManagerComments.SerializationToJSON(commments.GetList(), "comments.json"); 
+            FileManager.SerializationToJSON(commments.GetList(), "comments.json"); 
             
             //Deserialization JSON
             
-            List<Comment> commentsFromFileJSON = FileManagerComments.DeserializationFromJSON("comments.json");
+            List<Comment> commentsFromFileJSON =(List<Comment>)FileManager.DeserializationFromJSON("comments.json",new List<Comment>());
             Console.WriteLine("Comments from file json:\n");
             foreach (var comment in commentsFromFileJSON)
             {
@@ -31,11 +31,11 @@ namespace Laba_7
             
             //Serialization Binary
             
-            FileManagerComments.SerializationToBinary(commments.GetList(), "comments.bin"); 
+            FileManager.SerializationToBinary(commments.GetList(), "comments.bin"); 
             
             //Deserialization Binary
             
-            List<Comment> commentsFromFileBinary = FileManagerComments.DeserializationFromBinary("comments.bin");
+            List<Comment> commentsFromFileBinary = (List<Comment>)FileManager.DeserializationFromBinary("comments.bin");
             Console.WriteLine("Comments from file binary:\n");
             foreach (var comment in commentsFromFileBinary)
             {
