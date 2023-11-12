@@ -58,5 +58,59 @@ namespace Laba_7
         {
             return $"Author:[{AuthorInfo.Name}]\nDate of sending:[{DateSending}]\nMessage:[{Message}]";
         }
+
+        /// <summary>
+        /// Sort by AuthorInfo.Name in ascending order.
+        /// </summary>
+        /// <param name="left">first comment</param>
+        /// <param name="right">second comment</param>
+        /// <returns></returns>
+        public static bool OrderByAuthorName(Comment left, Comment right)
+        {
+            return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) > 0;
+        }
+        /// <summary>
+        /// Sort by AuthorInfo.Name in descending order.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static bool OrderByDescendingAuthorName(Comment left, Comment right)
+        {
+            return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) < 0;
+        }
+
+        /// <summary>
+        /// Sort by DateSending in ascending order.
+        /// </summary>
+        /// <param name="left">first comment</param>
+        /// <param name="right">second comment</param>
+        /// <returns></returns>
+        public static bool OrderByDateSending(Comment left, Comment right)
+        {
+            return DateTime.Compare(left.DateSending, right.DateSending) > 0;
+        }
+        /// <summary>
+        /// Sort by DateSending in descending order.
+        /// </summary>
+        /// <param name="left">first comment</param>
+        /// <param name="right">second comment</param>
+        /// <returns></returns>
+        public static bool OrderByDescendingDateSending(Comment left, Comment right)
+        {
+            return DateTime.Compare(left.DateSending, right.DateSending) < 0;
+        }
+
+        /// <summary>
+        /// Filter by AuthorInfo.Uid
+        /// </summary>
+        /// <param name="comment">comment</param>
+        /// <param name="value">search value</param>
+        /// <returns></returns>
+        public static bool FilterByAuthorUid(Comment comment, string value)
+        {
+            return string.Compare(comment.AuthorInfo.Uid,value,StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
     }
 }
