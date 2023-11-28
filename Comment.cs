@@ -77,6 +77,26 @@ namespace Laba_7
                 throw new ArgumentNullException();
             }
         }
+
+        /// <summary>
+        /// Sort by Message in ascending order, return ArgumentNullException if one of the parameters is null
+        /// </summary>
+        /// <param name="left">first comment</param>
+        /// <param name="right">second comment</param>
+        /// <returns></returns>
+        public static bool OrderByMessage(Comment left, Comment right)
+        {
+            if (left is not null && right is not null)
+            {
+                return string.Compare(left.Message, right.Message, StringComparison.OrdinalIgnoreCase) > 0;
+
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
         /// <summary>
         /// Sort by AuthorInfo.Name in descending order, return ArgumentNullException if one of the parameters is null
         /// </summary>
@@ -146,6 +166,19 @@ namespace Laba_7
             {
                 throw new ArgumentNullException();
             }
+        }
+        /// <summary>
+        /// Generate random fields in Comment
+        /// </summary>
+        /// <returns></returns>
+        public static Comment GenerateRandom()
+        {
+            return new Comment(
+                uidAuthor:Randomaizer.GenerateRandomString(),
+                nameAuthor:Randomaizer.GenerateRandomString(),
+                dateSending:Randomaizer.GenerateRandomDate(),
+                message:Randomaizer.GenerateRandomString()
+                );
         }
 
     }
