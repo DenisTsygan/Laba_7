@@ -60,45 +60,74 @@ namespace Laba_7
         }
 
         /// <summary>
-        /// Sort by AuthorInfo.Name in ascending order.
+        /// Sort by AuthorInfo.Name in ascending order, return ArgumentNullException if one of the parameters is null
         /// </summary>
         /// <param name="left">first comment</param>
         /// <param name="right">second comment</param>
         /// <returns></returns>
         public static bool OrderByAuthorName(Comment left, Comment right)
         {
-            return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) > 0;
+            if(left is not null && right is not null)
+            {
+                return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) > 0;
+
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
         /// <summary>
-        /// Sort by AuthorInfo.Name in descending order.
+        /// Sort by AuthorInfo.Name in descending order, return ArgumentNullException if one of the parameters is null
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
         public static bool OrderByDescendingAuthorName(Comment left, Comment right)
         {
-            return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) < 0;
+            if (left is not null && right is not null)
+            {
+                return string.Compare(left.AuthorInfo.Name, right.AuthorInfo.Name, StringComparison.Ordinal) < 0;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         /// <summary>
-        /// Sort by DateSending in ascending order.
+        /// Sort by DateSending in ascending order, return ArgumentNullException if one of the parameters is null
         /// </summary>
         /// <param name="left">first comment</param>
         /// <param name="right">second comment</param>
         /// <returns></returns>
         public static bool OrderByDateSending(Comment left, Comment right)
         {
-            return DateTime.Compare(left.DateSending, right.DateSending) > 0;
+            if (left is not null && right is not null)
+            {
+                return DateTime.Compare(left.DateSending, right.DateSending) > 0;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
         /// <summary>
-        /// Sort by DateSending in descending order.
+        /// Sort by DateSending in descending order, return ArgumentNullException if one of the parameters is null
         /// </summary>
         /// <param name="left">first comment</param>
         /// <param name="right">second comment</param>
         /// <returns></returns>
         public static bool OrderByDescendingDateSending(Comment left, Comment right)
         {
-            return DateTime.Compare(left.DateSending, right.DateSending) < 0;
+            if (left is not null && right is not null)
+            {
+                return DateTime.Compare(left.DateSending, right.DateSending) < 0;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         /// <summary>
@@ -109,7 +138,14 @@ namespace Laba_7
         /// <returns></returns>
         public static bool FilterByAuthorUid(Comment comment, string value)
         {
-            return string.Compare(comment.AuthorInfo.Uid,value,StringComparison.OrdinalIgnoreCase) == 0;
+            if (comment is not null && !string.IsNullOrEmpty(value))
+            {
+                return string.Compare(comment.AuthorInfo.Uid, value, StringComparison.OrdinalIgnoreCase) == 0;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
     }
