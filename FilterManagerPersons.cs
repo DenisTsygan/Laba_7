@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Laba_7
 {
@@ -11,6 +9,7 @@ namespace Laba_7
         /// <summary>
         /// FIlter list persons by field and searchValue, return ArgumentNullException if list is null or field or searchValue is null or (searchValue is not int or string)
         /// </summary>
+        /// <param name="list"> list for filter </param>
         /// <param name="field"> field in Person for filter </param>
         /// <param name="searchValue">search value for filter</param>
         /// <returns></returns>
@@ -59,6 +58,12 @@ namespace Laba_7
             }
             
         }
+        /// <summary>
+        /// Find max value By Field , return ArgumentException if list is null or uncorrect field
+        /// </summary>
+        /// <param name="list"> int field in Person for filter </param>
+        /// <param name="field">field for </param>
+        /// <returns></returns>
         public static int FindMaxValueByField(IEnumerable<Person> list, string field)
         {
             if (list is not null && !string.IsNullOrEmpty(field)){
@@ -78,6 +83,12 @@ namespace Laba_7
                 throw new ArgumentException();
             }
         }
+        /// <summary>
+        /// Find min value By Field , return ArgumentException if list is null or uncorrect field
+        /// </summary>
+        /// <param name="list"> int field in Person for filter </param>
+        /// <param name="field">field for </param>
+        /// <returns></returns>
         public static int FindMinValueByField(IEnumerable<Person> list, string field)
         {
             if (list is not null && !string.IsNullOrEmpty(field))
@@ -99,6 +110,12 @@ namespace Laba_7
                 throw new ArgumentException();
             }
         }
+        /// <summary>
+        /// Find average value By Field , return ArgumentException if list is null or uncorrect field
+        /// </summary>
+        /// <param name="list"> int field in Person for filter </param>
+        /// <param name="field">field for </param>
+        /// <returns></returns>
         public static double FindAverageValuebyField(IEnumerable<Person> list, string field)
         {
             if (list is not null && !string.IsNullOrEmpty(field))
