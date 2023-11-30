@@ -1,40 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Laba_7
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
 
-            TaskManager taskManager = new TaskManager();
-            var taskInfo = taskManager.GenerateArrayComments(8, 1000);
-
-            var array =await taskInfo;
-            //Filtered array by field Message contains(b)
-            var filteredArrayByMessage = array.Where(comment=>comment.Message.Contains('b',StringComparison.OrdinalIgnoreCase));
-            //Filtered array by field AuthorName contains(i)
-            var filteredArrayByAuthorName = array.Where(comment => comment.AuthorInfo.Name.Contains('i', StringComparison.OrdinalIgnoreCase));
-            //Filtered array by field DateSending < 2000 year
-            var filteredArrayByDateSending = array.Where(comment => comment.DateSending.Year<2000);
-            //Filtered array by field DateSending > 2004 year then by field AuthorName contains(p)
-            var filteredArrayByDateSendingThenAuthorName = array.Where(comment => comment.DateSending.Year > 2004)
-                .Where(comment => comment.AuthorInfo.Name.Contains('p', StringComparison.OrdinalIgnoreCase)
-            );
-
-            foreach (var comment in filteredArrayByDateSendingThenAuthorName)
+            List<Person> persons =(List<Person>)FileManager.DeserializationFromJSON("persons.json", new List<Person>());
+            var filteredPersons = FilterManagerPersons.SearchByField(persons, "Age", 66);
+            foreach (var person in filteredPersons)
             {
-                Console.WriteLine(comment);
+                Console.WriteLine($"Id={person.Id} ; Age={person.Age} ; LastName={person.LastName}");
             }
+            var filteredPersons_2 = FilterManagerPersons.SearchByField(filteredPersons, "LastName", "a");
+            Console.WriteLine("Filter by two fields:");
+            foreach (var person in filteredPersons_2)
+            {
+                Console.WriteLine($"Id={person.Id} ; Age={person.Age} ; LastName={person.LastName}");
 
-            var countLatestComments = array.Count(comment => comment.DateSending > DateTime.Now.AddYears(-1));
-            Console.WriteLine("Count of comments over the past year");
-            Console.WriteLine(countLatestComments);
-
+            }
+            int maxId = FilterManagerPersons.FindMaxValueByField(filteredPersons_2, "Id");
+            int minId = FilterManagerPersons.FindMinValueByField(filteredPersons_2, "Id");
+            double averageId = FilterManagerPersons.FindAverageValuebyField(filteredPersons_2, "Id");
+            Console.WriteLine("max id=" + maxId);
+            Console.WriteLine("min id=" + minId);
+            Console.WriteLine("average id=" + averageId);
         }
     }
 }
